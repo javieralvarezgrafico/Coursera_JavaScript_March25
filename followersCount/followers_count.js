@@ -17,3 +17,10 @@ function checkCountValue() {
     alert("¡Tu publicación de Instagram ganó 20 seguidores! ¡Sigue así!");
   }
 }
+
+// TAREA DE PRÁCTICA - BOTÓN REINICIAR CONTEO
+function resetCount(){
+    count = 0;
+    document.getElementById('countDisplay').innerHTML=count;
+    alert("¡El conteo de seguidores ha sido restablecido a cero!");
+}
