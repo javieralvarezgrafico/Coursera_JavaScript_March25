@@ -1,7 +1,7 @@
 const employees = [
-      { id: 1, name: 'John Doe', age: 30, department: 'IT', salary: 50000 },
-      { id: 2, name: 'Alice Smith', age: 28, department: 'HR', salary: 45000 },
-      { id: 3, name: 'Bob Johnson', age: 35, department: 'Finance', salary: 60000 },
+      { id: 1, name: 'John Doe', age: 30, department: 'IT', salary: 50000, specialization: 'JavaScript' },
+      { id: 2, name: 'Alice Smith', age: 28, department: 'HR', salary: 45000, specialization: 'TypeScript' },
+      { id: 3, name: 'Bob Johnson', age: 35, department: 'Finance', salary: 60000, specialization: 'Java' },
       //... Se pueden añadir más registros de empleados aquí
 ];
 
@@ -50,4 +50,18 @@ function findEmployeeById(employeeId) {
     }
     else{
       document.getElementById('employeesDetails').innerHTML = 'no se ha encontrado ningún empleado con este ID';
-    }}
+    }
+}
+
+/*
+TAREA PRÁCTICA. LOCALIZAR EMPLEADO CON ESPECIALIZACIÓN JAVASCRIPT
+*/
+function findEmployeeBySpec(employeeSpec){
+    const foundEmployeebySpec = employees.find(employee => employee.specialization === employeeSpec);
+    if (foundEmployeebySpec) {
+        document.getElementById('employeesDetails').innerHTML =`<p>${foundEmployeebySpec.id}: ${foundEmployeebySpec.name}: ${foundEmployeebySpec.name} - ${foundEmployeebySpec.department} - $${foundEmployeebySpec.salary} - ${foundEmployeebySpec.specialization}</p>`;
+    }
+    else{
+          document.getElementById('employeesDetails').innerHTML = 'no se ha encontrado ningún empleado con esta especialización';
+    }
+}
