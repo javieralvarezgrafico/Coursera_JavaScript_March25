@@ -25,8 +25,23 @@ function showbooks() {
         <p><strong>Nombre del libro: </strong>${book.name}</p>
         <p><strong>Nombre del autor:</strong> ${book.authorName}</p>
         <p><strong>Descripción del libro:</strong> ${book.bookDescription}</p>
-        <p><strong>Número de páginas:</strong> ${book.pagesNumber} página(s)</p>`
+        <p><strong>Número de páginas:</strong> ${book.pagesNumber} página(s)</p>
+        <button onclick="deletebook(${index})">Eliminar</button>`
+        /* Tarea de práctica: button */
     );
+    /*
+    Lo mismo pero en versión concatenada con comillas dobles, sería:
+
+    const booksDiv = books.map(function(book, index) {
+    return "<h1>Número de libro: " + (index + 1) + "</h1>" +
+        "<p><strong>Nombre del libro: </strong>" + book.name + "</p>" +
+        "<p><strong>Nombre del autor:</strong> " + book.authorName + "</p>" +
+        "<p><strong>Descripción del libro:</strong> " + book.bookDescription + "</p>" +
+        "<p><strong>Número de páginas:</strong> " + book.pagesNumber + " página(s)</p>" +
+        "<button onclick='deletebook(" + index + ")'>Eliminar</button>";
+    });
+
+    */
     document.getElementById('books').innerHTML = booksDiv.join('');
 }
 
@@ -35,4 +50,10 @@ function clearInputs() {
     document.getElementById('authorName').value = '';
     document.getElementById('bookDescription').value = '';
     document.getElementById('pagesNumber').value = '';
+}
+
+/* Tarea de práctica */
+function deletebook(index){
+    books.splice(index, 1);
+    showbooks();
 }
