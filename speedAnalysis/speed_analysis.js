@@ -4,11 +4,15 @@ let startTime, endTime;
 function startTest() {
     // Establecer el texto de prueba
     document.getElementById("inputText").value = testText;
-
+    
     // Reiniciar resultados y temporizador
     document.getElementById("output").innerHTML = "";
+    // AÑADIDO PARA CORRECCIÓN DE QUE SE QUEDAN BLOQUEADOS LOS TEXTAREA
+    document.getElementById("userInput").value = ""; // Limpiar el campo de entrada
+    document.getElementById("userInput").readOnly = false; // Habilitar la entrada
+    // ----------------------------------------------------------------
     startTime = new Date().getTime();
-
+    
     // Cambiar el texto y la funcionalidad del botón
     var button = document.getElementById("btn");
     button.innerHTML = "Finalizar Prueba";
@@ -25,6 +29,9 @@ function endTest() {
     var timeElapsed = (endTime - startTime) / 1000; // en segundos
     var userTypedText = document.getElementById("userInput").value;
 
+    // TAREA DE PRÁCTICA: Calcular longitud de texto
+    var TypedTextlength = userTypedText.length;
+
     // Dividir el texto usando regex para contar las palabras correctamente
     var typedWords = userTypedText.split(/\s+/).filter(function (word) {
         return word !== "";
@@ -39,7 +46,8 @@ function endTest() {
     // Mostrar los resultados
     var outputDiv = document.getElementById("output");
     outputDiv.innerHTML = "<h2>Resultados de la Prueba de Escritura:</h2>" +
-        "<p>Palabras Escribidas: " + typedWords + "</p>" +
+        "<p>Longitud total: " + TypedTextlength + "</p>" +
+        "<p>Palabras Escritas: " + typedWords + "</p>" +
         "<p>Tiempo Transcurrido: " + timeElapsed.toFixed(2) + " segundos</p>" +
         "<p>Palabras Por Minuto (WPM): " + wpm + "</p>";
 
