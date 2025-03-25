@@ -2,6 +2,11 @@
     const addTaskBtn = document.getElementById("addTaskBtn");
     const clearCompletedBtn = document.getElementById("clearCompletedBtn");
     const taskList = document.getElementById("taskList");
+
+    // TAREA DE PRÁCTICA
+    const clearAllBtn = document.getElementById("clearAllBtn");
+
+    
     
     let tasks = [];
 
@@ -43,8 +48,15 @@
         tasks = tasks.filter(task => !task.completed);
         displayTasks();
     }
+// TAREA DE PRÁCTICA    
+    function clearAllTasks(){
+        tasks.splice(0, tasks.length);
+        displayTasks();
+    }
 
     addTaskBtn.addEventListener("click", addTask);
     clearCompletedBtn.addEventListener("click", clearCompletedTasks);
+    // TAREA DE PRÁCTICA
+    clearAllBtn.addEventListener("click", clearAllTasks);
 
     displayTasks();
