@@ -48,3 +48,45 @@ xhr.onload = function(){
 }
 
 xhr.send();
+
+
+// TAREA DE PRÁCTICA
+var xhr2 = new XMLHttpRequest();
+var url = './news.json';
+xhr2.open('GET', url, true); 
+xhr2.responseType = 'json';
+
+xhr2.onload = function() {
+    var noticias = xhr2.response.news; // Recuperar el array de noticias
+    var noticiasDiv = document.getElementById('div_noticias'); // Obtener el contenedor de noticias
+
+    noticias.forEach(function(noticia) {
+        var noticiaDiv = document.createElement('div');
+        noticiaDiv.classList.add('new');
+
+        var title = document.createElement('h2');
+        title.textContent = noticia.title;
+
+        // Cambiar la descripción a <h3>
+        var description = document.createElement('h3');
+        description.textContent = noticia.description;
+
+        // Crear el contenido como párrafos normales
+        var contentDiv = document.createElement('div');
+        noticia.content.forEach(function(item) {
+            var contentParagraph = document.createElement('p');
+            contentParagraph.textContent = item;
+            contentDiv.appendChild(contentParagraph);
+        });
+
+        // Añadir todos los elementos al contenedor principal de la noticia
+        noticiaDiv.appendChild(title);
+        noticiaDiv.appendChild(description);  // Descripción ahora es un h3
+        noticiaDiv.appendChild(contentDiv);   // Mostrar el contenido como párrafos
+
+        // Añadir la noticia al contenedor general de noticias
+        noticiasDiv.appendChild(noticiaDiv);
+    });
+}
+
+xhr2.send();
