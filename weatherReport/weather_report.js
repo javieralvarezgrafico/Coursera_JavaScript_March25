@@ -10,7 +10,7 @@ function showweatherDetails(event) {
         return;  // Detener ejecución si no hay ciudad
     }
 
-    const apiKey = '20d21df342f6358cffa23c334d72ebaf';
+    const apiKey = 'a83f2da67094368bfbbf6ba7ee77fa08';
 
     // Crea la URL de la API con la ciudad proporcionada
     const url = `https://api.openweathermap.org/geo/1.0/direct?q=${city}&limit=1&appid=${apiKey}`;
