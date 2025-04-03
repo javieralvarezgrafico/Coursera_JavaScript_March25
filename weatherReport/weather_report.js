@@ -18,7 +18,7 @@ function showweatherDetails(event) {
     fetch(url)
         .then(response => response.json())
         .then(data => {
-            // Verifica si se encontró la ciudad y los datos
+            // Verifica si se encontró la ciudad y los datos. Data es el resultado de la respuesta de la API
             if (data.length === 0) {
                 alert("Ciudad no encontrada.");
                 return;
@@ -47,11 +47,48 @@ function showweatherDetails(event) {
           });
 }
 
+// TAREA DE PRÁCTICA
+// Función para mostrar la latitud y longitud de la ciudad
+function showLocationDetails() {
+    const city = document.getElementById('city').value;
+
+    if (!city) {
+        alert("Por favor ingresa una ciudad.");
+        return;
+    }
+
+    const apiKey = 'a83f2da67094368bfbbf6ba7ee77fa08';
+    const url = `https://api.openweathermap.org/geo/1.0/direct?q=${city}&limit=1&appid=${apiKey}`;
+
+    fetch(url)
+        .then(response => response.json())
+        .then(data => {
+            if (data.length === 0) {
+                alert("Ciudad no encontrada.");
+                return;
+            }
+
+            const lat = data[0].lat;  // Obtiene la latitud
+            const lon = data[0].lon;  // Obtiene la longitud
+
+            // Muestra la latitud y longitud en el div con id 'locationInfo'
+            const locationInfo = document.getElementById('locationInfo');
+            locationInfo.innerHTML = `<h3>Latitude: ${lat}</h3><h3>Longitude: ${lon}</h3>`;
+        })
+        .catch(error => {
+            console.error('Error fetching location:', error);
+            const locationInfo = document.getElementById('locationInfo');
+            locationInfo.innerHTML = `<p>Failed to fetch location. Please try again.</p>`;
+        });
+}
+
 document.getElementById('weatherForm').addEventListener('submit', showweatherDetails);
+// TAREA DE PRÁCTICA
+document.getElementById('btn_lat_lon').addEventListener('click', showLocationDetails);
 
 
 /*
-ENUNCIADO ORIGINAL TAREA (NO FUNCIONABA NI CON LAS ENTRADAS CORRECTAS)
+CONTENIDO ORIGINAL LABORATORIO (NO FUNCIONABA NI CON LAS ENTRADAS CORRECTAS)
 
 function showweatherDetails(event) {
       event.preventDefault();  // Correcto: previene el envío del formulario, pero no estaba llamado correctamente
